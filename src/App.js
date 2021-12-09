@@ -4,9 +4,11 @@ import NotesList from "./components/NotesList"
 import Search from './components/Search'
 import Header from './components/Header'
 import { keepTheme } from './theme'
+import Sidebar from './components/Sidebar'
 
 const App = () => {
   const [ notes, setNotes ] = useState([]);
+  const [ category, setCategory ] = useState('');
   const [ searchText, setSearchText ] = useState('');
   
   useEffect(()=>{
@@ -21,12 +23,12 @@ const App = () => {
       setNotes(savedNotes)
     }
     
-  }, [])
+  }, []);
 
   // save notes to local storage
   useEffect(() => {
     localStorage.setItem('react-notes-data', JSON.stringify(notes))
-  }, [notes])
+  }, [notes]);
 
 // save button will add new note
   const addNote = (text) => {
@@ -34,7 +36,8 @@ const App = () => {
     const newNote = {
       id: nanoid(),
       text: text,
-      date:date.toLocaleDateString(),
+      date: date.toLocaleDateString(),
+      category: category,
     }
     const newNotes = [...notes, newNote]
     setNotes(newNotes);
@@ -45,19 +48,29 @@ const App = () => {
     setNotes(newNotes);
   }
 
+  const allCategories = ['Notes', ...new Set(notes.map(note=>note.category))];
+
+  // const showHideClassName = show ? "modal display-block" : "modal display-none";
   return (
     <div>
+
       <div className="container">
-        <Header/>
-        
+        <Sidebar allCategories={allCategories} category={category}/>
+
+        <Header />
+  
         <Search handleSearchNote={setSearchText} />
         
         <NotesList 
           notes={notes.filter(note=>note.text.toLowerCase().includes(searchText))} 
           handleAddNote={addNote} 
           deleteNote={deleteNote} 
+          category={category}
+          setCategory={setCategory}
         />
       </div>
+
+
     </div>
   )
 }
