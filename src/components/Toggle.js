@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../index.css';
 import { setTheme } from '../theme';
-import { MdDarkMode, MdOutlineDarkMode } from 'react-icons/md'
-
 
 function Toggle() {
     const [ togClass, setTogClass ] = useState('dark');
@@ -35,18 +33,7 @@ function Toggle() {
     }
 
     return (
-        <div className="container--toggle"> 
-        {/* {
-            <button 
-                id="toggle" 
-                className={"toggle--button "+togClass} 
-                onClick={handleOnClick} 
-              >
-              {togClass === 'light' ? <MdOutlineDarkMode size='1.5rem' /> :
-              <MdDarkMode size='1.5rem'/>}
-              
-            </button>
-        } */}
+        <div className="container--toggle">
           <label htmlFor="toggle" className="toggle--label">
               <span className="toggle--label-background"></span>
           </label>
