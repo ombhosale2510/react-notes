@@ -39,6 +39,15 @@ body {
   color: var(--dark-text);
 	transition: 0.8s all ease;
 }
+
+/* Media queries */
+@media (max-width: 800px) {
+	.sidebar {
+		display: none;
+	}
+}
+
+
 .toggle--button {
 	cursor: pointer;
 }
@@ -57,18 +66,21 @@ code {
 		'Courier New', monospace;
 }
 
-.header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-
 .container {
-	max-width: 960px;
-	margin-right: auto;
+	display: grid;
+	grid-template-columns: 1fr 2fr 2fr 1fr;
+	gap: 1rem;
+	margin-right: 5rem;
 	margin-left: auto;
 	padding-right: 15px;
 	padding-left: 15px;
+}
+
+.header {
+	display: flex;
+	grid-column: 2/5;
+	align-items: center;
+	justify-content: space-between;
 }
 
 textarea {
@@ -83,18 +95,25 @@ textarea:focus {
 }
 
 .save {
-	size: 10rem;
-	background-color: #e1e1e1;
+	color: var(--dark-text);
+	background-color: var(--dark-background);
 	border: none;
 	border-radius: 10px;
-	padding: 5px 10px 5px 10px;
+}
+
+.save h4 {
+	margin: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 0.25rem;
+	padding-right: 0.25rem;
 }
 
 .save:hover {
-	background-color: #ededed;
+	background-color: var(--note);
 	cursor: pointer;
-	border-radius: 15px;
-	transition: all 0.4s ease;
+	border-radius: 20px;
+	transition: all 0.8s ease;
 }
 
 .note {
@@ -123,6 +142,7 @@ textarea:focus {
 
 .notes-list {
 	display: grid;
+	grid-column: 2/5;
 	grid-gap: 1rem;
 	grid-template-columns: repeat(
 		auto-fill,
@@ -150,23 +170,60 @@ textarea.placeholder-dark::placeholder {
 	color: var(--placeholder-note);
 }
 
-.delete-icon {
-	cursor: pointer;
-}
-
 #delete-icon {
+	position: relative;
+	display: inline-block;
 	fill: var(--dark-text);
 	cursor: pointer;
 	height: 1rem;
 }
 
+.delete-icon .tooltip {	
+	opacity: 0;
+	background-color: var(--dark-background);
+  color: #fff;
+  text-align: center;
+	border: #212121 solid 0.25rem;
+	border-radius: 10px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+	width: 80px;
+	transform: translateX(-60%);
+	top: 57%;
+	cursor: pointer;
+
+	transition: 0s;
+}
+
+.delete-icon:hover .tooltip {
+	opacity: 1;
+	pointer-events: none;
+	transition: all 0.6s ease;
+}
+
+.delete-icon .tooltip::after {
+  content: " ";
+  position: absolute;
+  top: 100%; /* At the bottom of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: white transparent transparent transparent;
+}
+
+
+/* || Searchbar */
 .search {
 	display: flex;
+	grid-column: 2/5;
 	align-items: center;
 	background-color: var(--dark-background);
 	padding: 5px;
 	transition: 0.8s all ease;
-	margin-bottom: 1.5em;
 }
 
 .search input {
@@ -200,6 +257,7 @@ input.placeholder-light::placeholder {
 	font-style: italic;
 }
 
+/* || Category */
 .category {
 	display: flex;
 	justify-content: center;
@@ -227,7 +285,6 @@ select {
   box-shadow: inset	;
   /* Personalize */
   flex: 1;
-  padding: 0 1em;
   color: var(--placeholder-note);
   background-color: var(--note-new);
   background-image: none;
@@ -241,7 +298,7 @@ select::-ms-expand {
 .select {
   position: relative;
   display: flex;
-  width: 7rem;
+  width: 5rem;
   height: 2rem;
   border-radius: .25em;
   overflow: hidden;
@@ -254,8 +311,6 @@ select::-ms-expand {
   right: 0;
 	top: 0;
 	bottom: 0;
-  padding: 0.2rem;
-  background-color: var(--note-new);
   transition: .25s all ease;
   pointer-events: none;
 }
@@ -264,7 +319,7 @@ select::-ms-expand {
   color: #f39c12;
 }
 
-/* scrollbar css */
+/* || Scrollbar */
 
 ::-webkit-scrollbar
 {
@@ -299,7 +354,7 @@ select::-ms-expand {
 	background-color: #646464;
 }
 
-/* modal */
+/* || Modal */
 .button {
 	color: var(--placeholder-note);
 	display:inline-block;
@@ -309,7 +364,7 @@ select::-ms-expand {
 	background:red;
 	font-size:18px;
 	background-color:#efefef;
-	border-radius:3px;
+	border-radius:10px;
 	box-shadow:0 1px 2px rgba(0,0,0,.3);
 	cursor:pointer;
 }
@@ -351,20 +406,31 @@ select::-ms-expand {
 .modal-text {
 	text-align: center;
 	margin: 0%;
+	margin-bottom: 1rem;
 }
 .modal-close-btn {
 	cursor: pointer;
-	margin-top: 0.5rem;
 	justify-content: center;
 	background:none;
 	color: var(--dark-text);
 	border: 0.1px solid grey;
-	border-radius: inherit;
+	border-radius: 10px;
+	padding-top: 0;
+	padding-bottom: 0;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
 }
 
-/* Sidebar */
+.modal-close-btn:hover {
+	background-color: var(--placeholder-search);
+	color: var(--dark-text);
+}
+
+/* || Sidebar */
 .sidebar {
-	position: fixed;
+	grid-column: 1/1;
+	grid-row: 1/5;
+	/* position: fixed; */
 	top: 0;
 	left: 0;
 	height: 100%;
@@ -393,7 +459,6 @@ select::-ms-expand {
 
 .sidebar .btn-menu {
 	fill: var(--dark-text);
-	position: absolute;
 	left: 90%;
 	top: 6px;
 	font-size: 20px;
@@ -415,6 +480,7 @@ select::-ms-expand {
 	line-height: 50px;
 }
 
+/* || Tooltip */
 .sidebar ul li .tooltip {
 	position: absolute;
 	left: 10rem;
@@ -439,6 +505,7 @@ select::-ms-expand {
 }
 
 .sidebar ul li a {
+	cursor: pointer;
 	margin-left: -2rem;
 	color: #fff;
 	display: flex;
