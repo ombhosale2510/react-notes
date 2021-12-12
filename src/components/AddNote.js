@@ -67,7 +67,8 @@ const AddNote = ({ handleAddNote, category, setCategory, showHideClassName }) =>
         </select>
       </div>
         <button className='save' onClick={handleSaveClick} title='Save note'>
-        Save</button>
+        <h4>Save</h4>
+        </button>
       </div>
 
 
@@ -77,7 +78,7 @@ const AddNote = ({ handleAddNote, category, setCategory, showHideClassName }) =>
           <section className="modal-main">
             <p className='modal-text'>{modalText}</p>
             <button type="button" className='modal-close-btn' 
-              onClick={()=>setShow(false)}>Close
+              onClick={()=>setShow(false)}><h4>Close</h4>
             </button>
           </section>
         </div>
