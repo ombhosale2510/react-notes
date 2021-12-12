@@ -1,4 +1,14 @@
-const Sidebar = ({ allCategories }) => {
+import { useState } from "react";
+
+const Sidebar = ({ allCategories, notes, setNotes }) => {
+  
+  const [notesCopy, setNotesCopy] = useState(notes);
+  
+  const handleLabelClick = ( category ) => {
+    const newNotes = notes.filter(note=>note.category === category);
+    setNotes(category==='Notes' ? notesCopy:newNotes);
+  }
+  
   return (<>
     <div className='sidebar'>
       <div className="logo-content">
@@ -15,7 +25,7 @@ const Sidebar = ({ allCategories }) => {
           </svg>
           <div className="logo-name">Notes</div>
         </div>
-        {/* <svg
+        <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
@@ -24,13 +34,14 @@ const Sidebar = ({ allCategories }) => {
           className='btn-menu'
         >
           <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path>
-        </svg> */}
+        </svg>
       </div>
       <ul className='nav-list'>
+
       {allCategories.map(category => {
         return (<>
       <li>
-        <a href='#'>
+        <a onClick={()=>{handleLabelClick(category)}}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -46,6 +57,7 @@ const Sidebar = ({ allCategories }) => {
         <span className='tooltip'>{category}</span>
       </li>
         </>)
+
       })}
       </ul>
     </div>

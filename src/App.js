@@ -55,7 +55,12 @@ const App = () => {
     <div>
 
       <div className="container">
-        <Sidebar allCategories={allCategories} category={category}/>
+        <Sidebar 
+          allCategories={allCategories} 
+          category={category}
+          setNotes={setNotes}
+          notes={notes}
+          />
 
         <Header />
   
