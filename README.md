@@ -2,6 +2,13 @@
 
 Notes application to capture ideas and save notes.
 
+# Features
+ - Create notes in a simple environment.
+ - No database - notes are only stored in the browser's local storage.
+ - Switch between Dark Mode and Light Mode.
+ - Search bar to search through your notes effortlessly.
+ - Sidebar to filter through your notes.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
