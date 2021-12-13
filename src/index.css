@@ -438,36 +438,31 @@ select::-ms-expand {
 	padding: 6px 14px;
 }
 
-.sidebar .logo-content .logo {
-	fill: var(--dark-text);
+.sidebar .logo-content {
+	margin-top: 1.5rem;
 	display: flex;
-	height: 50px;
 	width: 100%;
 	align-items: center;
+	justify-content: flex-end;
 }
 
-.logo-content .logo i {
-	font-size: 28px;
-	margin-right: 5px;
+.sidebar .logo-content .logo {
+	fill: var(--dark-text);
 }
 
-.logo-content .logo .logo-name {
+.logo-content .logo-name {
+	flex: 2;
+	font-size: 1.25rem;
+	padding-top: initial;
 	margin-left: 1rem;
-	font-size: 1.5rem;
-	font-weight: 400;
+	vertical-align: middle;
 }
 
 .sidebar .btn-menu {
 	fill: var(--dark-text);
-	left: 90%;
-	top: 6px;
-	font-size: 20px;
-	height: 50px;
-	text-align: center;
-	line-height: 50px;
-	transform: translateX(-50%);
 }
 
+/* Sidebar items */
 .sidebar ul {
 	margin-top: 20px;
 }
