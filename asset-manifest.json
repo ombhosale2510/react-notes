@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/OmegaCoding5505/react-notes/static/css/main.2c982151.chunk.css",
+    "main.js": "/OmegaCoding5505/react-notes/static/js/main.aae5a086.chunk.js",
+    "main.js.map": "/OmegaCoding5505/react-notes/static/js/main.aae5a086.chunk.js.map",
+    "runtime-main.js": "/OmegaCoding5505/react-notes/static/js/runtime-main.abb692ea.js",
+    "runtime-main.js.map": "/OmegaCoding5505/react-notes/static/js/runtime-main.abb692ea.js.map",
+    "static/js/2.837bd4ea.chunk.js": "/OmegaCoding5505/react-notes/static/js/2.837bd4ea.chunk.js",
+    "static/js/2.837bd4ea.chunk.js.map": "/OmegaCoding5505/react-notes/static/js/2.837bd4ea.chunk.js.map",
+    "index.html": "/OmegaCoding5505/react-notes/index.html",
+    "static/css/main.2c982151.chunk.css.map": "/OmegaCoding5505/react-notes/static/css/main.2c982151.chunk.css.map",
+    "static/js/2.837bd4ea.chunk.js.LICENSE.txt": "/OmegaCoding5505/react-notes/static/js/2.837bd4ea.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.abb692ea.js",
+    "static/js/2.837bd4ea.chunk.js",
+    "static/css/main.2c982151.chunk.css",
+    "static/js/main.aae5a086.chunk.js"
+  ]
+}
