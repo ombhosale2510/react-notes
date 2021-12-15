@@ -8,9 +8,9 @@ import Sidebar from './components/Sidebar'
 
 const App = () => {
   const [ notes, setNotes ] = useState([]);
-  const [ category, setCategory ] = useState('');
+  const [ category, setCategory ] = useState(['Notes']);
   const [ searchText, setSearchText ] = useState('');
-  
+
   useEffect(()=>{
     keepTheme();
   })
@@ -28,6 +28,7 @@ const App = () => {
   // save notes to local storage
   useEffect(() => {
     localStorage.setItem('react-notes-data', JSON.stringify(notes))
+    setNotesCopy([...notes]);
   }, [notes]);
 
 // save button will add new note
@@ -48,18 +49,23 @@ const App = () => {
     setNotes(newNotes);
   }
 
-  const allCategories = ['Notes', ...new Set(notes.map(note=>note.category))];
-
-  // const showHideClassName = show ? "modal display-block" : "modal display-none";
+  const allCategories = ['Notes', 'Misc', 'Todo', 'Lecture Notes', 'Recipe'];
+  
+  const [notesCopy, setNotesCopy] = useState([...notes]);
+  const handleSidebar = (category) => {
+    setNotesCopy(category==='Notes'?[...notes]:
+    notes.filter(note=>note.category===category));
+  }
+  
   return (
     <div>
 
       <div className="container">
         <Sidebar 
-          allCategories={allCategories} 
-          category={category}
-          setNotes={setNotes}
-          notes={notes}
+          allCategories={allCategories}
+          handleSidebar={handleSidebar}
+          notesCopy={notesCopy}
+          key={notes.id}
           />
 
         <Header />
@@ -67,11 +73,15 @@ const App = () => {
         <Search handleSearchNote={setSearchText} />
         
         <NotesList 
-          notes={notes.filter(note=>note.text.toLowerCase().includes(searchText))} 
+          notesCopy={notesCopy.filter(note=>
+            note.text.toLowerCase().includes(searchText) ||
+            note.category.toLowerCase().includes(searchText) 
+          )} 
           handleAddNote={addNote} 
           deleteNote={deleteNote} 
           category={category}
           setCategory={setCategory}
+          allCategories={allCategories}
         />
       </div>
 

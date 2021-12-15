@@ -37,10 +37,10 @@ function Toggle() {
           <label htmlFor="toggle" className="toggle--label">
               <span className="toggle--label-background"></span>
           </label>
-            <div class="mt-normal-navi" style={{fontSize:'10px'}}> 
+            <div className="mt-normal-navi" style={{fontSize:'10px'}}> 
                 <input id="1" type="checkbox" onChange={handleOnClick} 
                     checked={togClass==='light' ? '':'checked'}/>
-                <label for="1"></label>
+                <label htmlFor="1"></label>
             </div>
         </div>
     )

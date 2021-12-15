@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const AddNote = ({ handleAddNote, category, setCategory, showHideClassName }) => {
+const AddNote = ({ handleAddNote, category, setCategory, showHideClassName, allCategories }) => {
   const [ noteText, setNoteText ] = useState('');
   const [ show, setShow ] = useState(false);
   const [ modalText, setModalText ] = useState('');
@@ -43,7 +43,9 @@ const AddNote = ({ handleAddNote, category, setCategory, showHideClassName }) =>
         className='placeholder-dark' 
         placeholder="Type to add a note.."
         onChange={handleChange} 
-        value={noteText}>
+        value={noteText}
+        autoFocus
+        >
       </textarea>
       <div className="note-footer">
         <small 
@@ -58,12 +60,12 @@ const AddNote = ({ handleAddNote, category, setCategory, showHideClassName }) =>
             onChange={(e)=>handleCategory(e)}
             required
             title='Select a label for your note'
+            defaultValue="Notes"
           >
-          <option value="" disabled selected value>-- choose --</option>
-          <option value="Misc">Misc</option>
-          <option value="Todo">Todo</option>
-          <option value="Recipe">Recipe</option>
-          <option value="Lecture-notes">Lecture Notes</option>
+          <option value="Notes" disabled>-- choose --</option>
+          {allCategories.map(item => {
+            return <option key={item} value={item}>{item}</option>
+          })}
         </select>
       </div>
         <button className='save' onClick={handleSaveClick} title='Save note'>
