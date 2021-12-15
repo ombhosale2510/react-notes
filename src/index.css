@@ -113,7 +113,8 @@ textarea:focus {
 	background-color: var(--note);
 	cursor: pointer;
 	border-radius: 20px;
-	transition: all 0.8s ease;
+	transition: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	/* transition: all 0.8s ease; */
 }
 
 .note {
@@ -177,44 +178,6 @@ textarea.placeholder-dark::placeholder {
 	cursor: pointer;
 	height: 1rem;
 }
-
-.delete-icon .tooltip {	
-	opacity: 0;
-	background-color: var(--dark-background);
-  color: #fff;
-  text-align: center;
-	border: #212121 solid 0.25rem;
-	border-radius: 10px;
-  padding: 5px 0;
-
-  /* Position the tooltip */
-  position: absolute;
-  z-index: 1;
-	width: 80px;
-	transform: translateX(-60%);
-	top: 57%;
-	cursor: pointer;
-
-	transition: 0s;
-}
-
-.delete-icon:hover .tooltip {
-	opacity: 1;
-	pointer-events: none;
-	transition: all 0.6s ease;
-}
-
-.delete-icon .tooltip::after {
-  content: " ";
-  position: absolute;
-  top: 100%; /* At the bottom of the tooltip */
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: white transparent transparent transparent;
-}
-
 
 /* || Searchbar */
 .search {

@@ -1,7 +1,6 @@
 const Note = ({ id, text, date, deleteNote, category }) => {
-  // console.log(category);
   return (
-    <div className="note" id={id}>
+    <div className="note" key={id}>
       <span className='note-text'>{text}</span>
       <div className="note-footer">
         <small>{date}</small>
@@ -23,7 +22,6 @@ const Note = ({ id, text, date, deleteNote, category }) => {
 
           <title>Delete note</title>
         </svg>
-          <span className="tooltip">Delete</span>
         </div>
       </div>
     </div>
