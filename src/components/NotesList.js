@@ -2,7 +2,7 @@ import Note from './Note'
 import AddNote from './AddNote'
 
 const NotesList = (
-  { notesCopy, handleAddNote, deleteNote, category, setCategory, showHideClassName, allCategories }
+  { notesCopy, handleAddNote, deleteNote, category, setCategory, showHideClassName, allCategories, showAlert }
   ) => {
   return (
     <div key={allCategories} className="notes-list">
@@ -23,6 +23,7 @@ const NotesList = (
         setCategory={setCategory} 
         showHideClassName={showHideClassName} 
         allCategories={allCategories}
+        showAlert={showAlert}
       />
     </div>
   )

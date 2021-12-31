@@ -10,6 +10,11 @@ const App = () => {
   const [ notes, setNotes ] = useState([]);
   const [ category, setCategory ] = useState(['Notes']);
   const [ searchText, setSearchText ] = useState('');
+  const [ alert, setAlert ] = useState({
+    show:false,
+    msg:'',
+    type:''
+  });
 
   useEffect(()=>{
     keepTheme();
@@ -45,6 +50,7 @@ const App = () => {
   }
 
   const deleteNote = (id) => {
+    showAlert(true, 'Note deleted', 'warning');
     const newNotes = notes.filter(note => note.id !== id);
     setNotes(newNotes);
   }
@@ -55,6 +61,10 @@ const App = () => {
   const handleSidebar = (category) => {
     setNotesCopy(category==='Notes'?[...notes]:
     notes.filter(note=>note.category===category));
+  }
+  
+  const showAlert = (show=false, msg='', type='') => {
+    setAlert({show, msg, type});
   }
   
   return (
@@ -68,20 +78,21 @@ const App = () => {
           key={notes.id}
           />
 
-        <Header />
-  
+        <Header notes={notes} alert={alert} removeAlert={showAlert} />
+
         <Search handleSearchNote={setSearchText} />
-        
+
         <NotesList 
           notesCopy={notesCopy.filter(note=>
             note.text.toLowerCase().includes(searchText) ||
-            note.category.toLowerCase().includes(searchText) 
+            note.category.toString().toLowerCase().includes(searchText) 
           )} 
           handleAddNote={addNote} 
           deleteNote={deleteNote} 
           category={category}
           setCategory={setCategory}
           allCategories={allCategories}
+          showAlert={showAlert}
         />
       </div>
 

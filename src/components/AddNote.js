@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const AddNote = ({ handleAddNote, category, setCategory, showHideClassName, allCategories }) => {
+const AddNote = ({ handleAddNote, category, setCategory, showHideClassName, allCategories, showAlert }) => {
   const [ noteText, setNoteText ] = useState('');
   const [ show, setShow ] = useState(false);
   const [ modalText, setModalText ] = useState('');
@@ -23,6 +23,7 @@ const AddNote = ({ handleAddNote, category, setCategory, showHideClassName, allC
       setShow(true);
     }
     if (noteText.trim().length > 0 && category!=='') {
+      showAlert(true, 'Note added', 'success');
       handleAddNote(noteText);
       setNoteText('');
       setShow(false);
@@ -80,7 +81,7 @@ const AddNote = ({ handleAddNote, category, setCategory, showHideClassName, allC
           <section className="modal-main">
             <p className='modal-text'>{modalText}</p>
             <button type="button" className='modal-close-btn' 
-              onClick={()=>setShow(false)}><h4>Close</h4>
+              onClick={()=>setShow(false)}><p>Close</p>
             </button>
           </section>
         </div>
