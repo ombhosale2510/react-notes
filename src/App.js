@@ -16,6 +16,9 @@ const App = () => {
     type:''
   });
 
+  const [isEditing, setIsEditing] = useState(false);
+  const [editId, setEditId] = useState(null);
+  
   useEffect(()=>{
     keepTheme();
   })
@@ -36,7 +39,7 @@ const App = () => {
     setNotesCopy([...notes]);
   }, [notes]);
 
-// save button will add new note
+  // save button will add new note
   const addNote = (text) => {
     const date = new Date();
     const newNote = {
@@ -55,22 +58,25 @@ const App = () => {
     setNotes(newNotes);
   }
 
+  // hardcoded values for categories
   const allCategories = ['Notes', 'Misc', 'Todo', 'Lecture Notes', 'Recipe'];
   
+  // copy notes for filtering through
   const [notesCopy, setNotesCopy] = useState([...notes]);
   const handleSidebar = (category) => {
     setNotesCopy(category==='Notes'?[...notes]:
     notes.filter(note=>note.category===category));
   }
   
+  // function to call alert
   const showAlert = (show=false, msg='', type='') => {
     setAlert({show, msg, type});
   }
   
   return (
     <div>
-
       <div className="container">
+
         <Sidebar 
           allCategories={allCategories}
           handleSidebar={handleSidebar}
@@ -93,10 +99,15 @@ const App = () => {
           setCategory={setCategory}
           allCategories={allCategories}
           showAlert={showAlert}
+          notes={notes}
+          setNotes={setNotes}
+          editId={editId}
+          setEditId={setEditId}
+          isEditing={isEditing}
+          setIsEditing={setIsEditing}
         />
+        
       </div>
-
-
     </div>
   )
 }

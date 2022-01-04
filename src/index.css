@@ -20,9 +20,10 @@ body {
 	--note-new:	#FF6D6D;
 	--placeholder-search: darkslategray;
 	--placeholder-note: #212121;
+	--save: #B1D0E0;
 }
 .theme-dark {
-  --dark-text: #EAEAEA;
+	--dark-text: #EAEAEA;
   --light-text: #F9F8F8;  
   --dark-background: #222831;
   --light-background: #586F7C;
@@ -32,6 +33,7 @@ body {
 	--note-new: #00ADB5;
 	--placeholder-search: grey;
 	--placeholder-note: #343434;
+	--save: #1A374D;
 }
 
  html, #root {
@@ -96,7 +98,7 @@ textarea:focus {
 
 .save {
 	color: var(--dark-text);
-	background-color: var(--dark-background);
+	background-color: var(--save);
 	border: none;
 	border-radius: 10px;
 }
@@ -118,6 +120,7 @@ textarea:focus {
 }
 
 .note {
+	position: relative;
 	font-size: 1rem;
 	color: var(--dark-text);
 	background-color: var(--note);
@@ -156,6 +159,40 @@ textarea:focus {
 	background-color: var(--note-new);
 }
 
+.note.edit {
+	background-color: rgba(0, 0, 0, 0.1);
+	text-decoration-style: dashed;
+	/* color: rgba(0, 0, 0, 0.8); */
+}
+
+.note .overlay {
+  position: absolute;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+	border-radius: 10px;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+}
+
+.note .overlay.edit {
+	display: block;
+}
+
+.note .text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  color: white;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+}
+
 .remaining {
 	font-weight: 500;
 	color: var(--placeholder-note);
@@ -175,6 +212,13 @@ textarea.placeholder-dark::placeholder {
 	position: relative;
 	display: inline-block;
 	fill: var(--dark-text);
+	cursor: pointer;
+	height: 1rem;
+}
+
+#edit-icon {
+	position: relative;
+	display: inline-block;
 	cursor: pointer;
 	height: 1rem;
 }

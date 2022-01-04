@@ -1,10 +1,28 @@
-const Note = ({ id, text, date, deleteNote, category }) => {
+const Note = ({ id, text, date, deleteNote, category, editItem, editId }) => {
   return (
-    <div className="note" key={id}>
+    <div className={`note ${editId===id ? `edit`:``}`} key={id} >
       <span className='note-text'>{text}</span>
+      <div className={`overlay ${editId===id ? `edit`:``}`}>
+        <div className="text">Editing</div>
+      </div>
       <div className="note-footer">
         <small>{date}</small>
         <small>{category}</small>
+
+        {/* Edit icon */}
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          width="18"
+          height="18"
+          viewBox="0 0 24 24" 
+          fill="none" 
+          id='edit-icon'
+          stroke="currentColor"
+          onClick={()=>editItem(id)}
+        >
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+        <title>Edit note</title>
+        </svg>
 
         {/* Delete icon */}
         <div className="delete-icon">

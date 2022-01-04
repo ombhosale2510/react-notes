@@ -1,12 +1,10 @@
 import { useState } from "react";
 
-const AddNote = ({ handleAddNote, category, setCategory, showHideClassName, allCategories, showAlert }) => {
-  const [ noteText, setNoteText ] = useState('');
+const AddNote = ({ notes, setNotes, handleAddNote, category, setCategory, showHideClassName, allCategories, showAlert, isEditing, setIsEditing, editId, setEditId, noteText, setNoteText, textareaRef }) => {
   const [ show, setShow ] = useState(false);
   const [ modalText, setModalText ] = useState('');
 
   const charCount = 200;
-
   const handleChange = (event) => {
     if (charCount - event.target.value.length >= 0) {
       setNoteText(event.target.value);
@@ -28,6 +26,19 @@ const AddNote = ({ handleAddNote, category, setCategory, showHideClassName, allC
       setNoteText('');
       setShow(false);
     }
+
+    if (noteText.trim().length > 0 && category!=='' && isEditing) {
+      setNotes(notes.map(note=>{
+        if (note.id === editId) {
+          return ({...note, text:noteText, category:category})
+        }
+        return note
+      }));
+      setEditId(null);
+      setIsEditing(false);
+      showAlert(true, 'Note Changed', 'success');
+    }
+
   }
 
   const handleCategory = ( event ) => {
@@ -46,6 +57,7 @@ const AddNote = ({ handleAddNote, category, setCategory, showHideClassName, allC
         onChange={handleChange} 
         value={noteText}
         autoFocus
+        ref={textareaRef}
         >
       </textarea>
       <div className="note-footer">
@@ -70,7 +82,7 @@ const AddNote = ({ handleAddNote, category, setCategory, showHideClassName, allC
         </select>
       </div>
         <button className='save' onClick={handleSaveClick} title='Save note'>
-        <h4>Save</h4>
+        <h4>{isEditing ? 'Edit':'Save'}</h4>
         </button>
       </div>
 
