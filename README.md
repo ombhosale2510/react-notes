@@ -8,6 +8,7 @@ Notes application to capture ideas and save notes.
  - Switch between Dark Mode and Light Mode.
  - Search bar to search through your notes effortlessly.
  - Sidebar to filter through your notes.
+ - Edit your notes to fix your mistakes.
 
 # Getting Started with Create React App
 
