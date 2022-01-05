@@ -69,13 +69,13 @@ const AddNote = ({ notes, setNotes, handleAddNote, category, setCategory, showHi
       <div className='select'>
         <select 
             name={category} 
-            id="label" 
+            className="select" 
             onChange={(e)=>handleCategory(e)}
             required
             title='Select a label for your note'
             defaultValue="Notes"
           >
-          <option value="Notes" disabled>-- choose --</option>
+          <option value="Notes" disabled selected>Categories</option>
           {allCategories.map(item => {
             return <option key={item} value={item}>{item}</option>
           })}

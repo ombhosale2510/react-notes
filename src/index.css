@@ -284,46 +284,18 @@ input.placeholder-light::placeholder {
 	margin-right: 0.5rem;
 }
 
-select {
-  /* Reset Select */
-  appearance: none;
-  outline: 0;
-  border: 0;
-  box-shadow: inset	;
-  /* Personalize */
-  flex: 1;
-  color: var(--placeholder-note);
-  background-color: var(--note-new);
-  background-image: none;
-  cursor: pointer;
-}
-/* Remove IE arrow */
-select::-ms-expand {
-  display: none;
-}
-/* Custom Select wrapper */
+/* || Select */
 .select {
-  position: relative;
-  display: flex;
-  width: 5rem;
-  height: 2rem;
-  border-radius: .25em;
-  overflow: hidden;
+	padding: 0.25rem 0.75rem;
+	background-color: var(--note-new);
+	border: none;
+	border-radius: 0.25rem;
+	cursor: pointer;
 }
-/* Arrow */
-.select::after {
-  content: '\25BC';
-	font-size: 1rem;
-  position: absolute;
-  right: 0;
-	top: 0;
-	bottom: 0;
-  transition: .25s all ease;
-  pointer-events: none;
-}
-/* Transition */
-.select:hover::after {
-  color: #f39c12;
+
+.select:focus,
+.select:hover {
+	outline: none;
 }
 
 /* || Scrollbar */
