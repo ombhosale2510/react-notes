@@ -220,6 +220,7 @@ textarea.placeholder-dark::placeholder {
 	display: inline-block;
 	fill: var(--dark-text);
 	cursor: pointer;
+	transition: 0.8s all ease;
 	height: 1rem;
 }
 
