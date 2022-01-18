@@ -2,7 +2,9 @@
 
 Notes application to capture ideas and save notes.
 
-![alt text](public/'App Live Demo.gif')
+<p align='center'>
+ <img src='https://user-images.githubusercontent.com/67160092/149976501-2054a472-d85b-4e47-8e16-db77d84042f4.gif' />
+</p>
 
 # Features
  - Create notes in a simple environment.
