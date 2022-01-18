@@ -1,4 +1,11 @@
-const Note = ({ id, text, date, deleteNote, category, editItem, editId }) => {
+import { useContext } from 'react';
+import { NotesContext } from '../App'
+
+const Note = ({ id, text, date, editItem, category }) => {
+
+  const { deleteNote, editId } = useContext(NotesContext);
+
+  
   return (
     <div className={`note ${editId===id ? `edit`:``}`} key={id} >
       <span className='note-text'>{text}</span>

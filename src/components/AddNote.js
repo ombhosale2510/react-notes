@@ -1,6 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { NotesContext } from '../App'
 
-const AddNote = ({ notes, setNotes, handleAddNote, category, setCategory, showHideClassName, allCategories, showAlert, isEditing, setIsEditing, editId, setEditId, noteText, setNoteText, textareaRef }) => {
+const AddNote = ({ noteText, setNoteText, textareaRef, category, setCategory }) => {
+
+  const { handleAddNote, showAlert, notes, setNotes, editId, isEditing, allCategories, setEditId, setIsEditing } = useContext(NotesContext);
+  
   const [ show, setShow ] = useState(false);
   const [ modalText, setModalText ] = useState('');
 
@@ -45,10 +49,11 @@ const AddNote = ({ notes, setNotes, handleAddNote, category, setCategory, showHi
     let { value } = event.target;
     setCategory(value);
   }  
-  showHideClassName = show ? "modal display-block" : "modal display-none";
+  let showHideClassName = show ? "modal display-block" : "modal display-none";
 
   return (
     <div className="note new">
+
       <textarea 
         cols="10" 
         rows="8" 
@@ -60,6 +65,7 @@ const AddNote = ({ notes, setNotes, handleAddNote, category, setCategory, showHi
         ref={textareaRef}
         >
       </textarea>
+
       <div className="note-footer">
         <small 
           className='remaining' 
@@ -81,11 +87,12 @@ const AddNote = ({ notes, setNotes, handleAddNote, category, setCategory, showHi
           })}
         </select>
       </div>
+
         <button className='save' onClick={handleSaveClick} title='Save note'>
         <h4>{isEditing ? 'Edit':'Save'}</h4>
         </button>
+      
       </div>
-
 
       {/* Modal */}
       <main>

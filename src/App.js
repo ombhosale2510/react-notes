@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { nanoid } from 'nanoid'
 import NotesList from "./components/NotesList"
 import Search from './components/Search'
 import Header from './components/Header'
 import { keepTheme } from './theme'
 import Sidebar from './components/Sidebar'
+
+export const NotesContext = React.createContext();
 
 const App = () => {
   const [ notes, setNotes ] = useState([]);
@@ -74,8 +76,21 @@ const App = () => {
   }
   
   return (
-    <div>
+    <>
       <div className="container">
+
+      <button className="submenu">
+      <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          style={{ msFilter: "" }}
+          className='submenu-btn'
+        >
+          <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path>
+        </svg>
+      </button>
 
         <Sidebar 
           allCategories={allCategories}
@@ -88,27 +103,31 @@ const App = () => {
 
         <Search handleSearchNote={setSearchText} />
 
-        <NotesList 
-          notesCopy={notesCopy.filter(note=>
-            note.text.toLowerCase().includes(searchText) ||
-            note.category.toString().toLowerCase().includes(searchText) 
-          )} 
-          handleAddNote={addNote} 
-          deleteNote={deleteNote} 
-          category={category}
-          setCategory={setCategory}
-          allCategories={allCategories}
-          showAlert={showAlert}
-          notes={notes}
-          setNotes={setNotes}
-          editId={editId}
-          setEditId={setEditId}
-          isEditing={isEditing}
-          setIsEditing={setIsEditing}
-        />
-        
+        <NotesContext.Provider 
+          value={{ handleAddNote:addNote, 
+            deleteNote, 
+            showAlert, 
+            notes, 
+            setNotes, 
+            editId, 
+            isEditing,
+            allCategories,
+            setEditId,
+            setIsEditing,
+          }} >
+
+          <NotesList 
+            notesCopy={notesCopy.filter(note=>
+              note.text.toLowerCase().includes(searchText) ||
+              note.category.toString().toLowerCase().includes(searchText) 
+            )} 
+            category={category}
+            setCategory={setCategory}
+            notes={notes}
+          />
+        </NotesContext.Provider>
       </div>
-    </div>
+    </>
   )
 }
 
