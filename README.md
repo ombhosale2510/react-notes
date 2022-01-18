@@ -2,6 +2,8 @@
 
 Notes application to capture ideas and save notes.
 
+![alt text](public/'App Live Demo.gif')
+
 # Features
  - Create notes in a simple environment.
  - No database - notes are only stored in the browser's local storage.
